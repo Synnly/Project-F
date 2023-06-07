@@ -1,15 +1,16 @@
-PHONY : clean
+.PHONY: all compile clean
 CC = gcc
 CFLAGS = -Wall -W -std=c99 -g
 LIBS =
 LDFLAGS = `sdl2-config --cflags --libs`
 EXEC = main
-SRC = main.c joueur/Joueur.c graphismes/Graphismes.c
+SRC = main.c joueur/Joueur.c graphismes/Graphismes.c monde/Monde.c
 OBJ = $(SRC:.c=.o)
 
-all: $(EXEC)
+all: compile clean
+
+compile: $(EXEC)
 	@./main
-	clean
 
 main: $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $^ $(LIBS) $(LDFLAGS)
@@ -18,4 +19,4 @@ main: $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	@rm -rf *.o */*.o *~ $(EXEC)
+	@rm -rf */*.o $(EXEC)

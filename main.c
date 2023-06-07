@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "joueur/Joueur.h"
 #include "graphismes/Graphismes.h"
+#include "monde/Monde.h"
 
 int main(){
     SDL_Window* fenetre;
@@ -24,13 +24,21 @@ int main(){
     SDL_SetRenderDrawColor(renderer, 32, 34, 37, SDL_ALPHA_OPAQUE);
     SDL_Event event;
 
-    // Initialisation du joueur
-    Joueur joueur;
-    initJoueur(&joueur);
+    // Initialisation du monde
+    Monde monde;
+    initMonde(&monde);
+    startRunning(&monde);
+    Joueur joueur = *getMondeJoueur(&monde);
     initJoueurSprite(renderer, &joueur);
 
     // Boucle de jeu
-    while(true){
+    while(isRunning(&monde)){
+
+        SDL_FlushEvents(SDL_APP_TERMINATING, SDL_USEREVENT);
+        if(SDL_PollEvent(&event) && (event.type == SDL_QUIT)){
+            stopRunning(&monde);
+            break;
+        }
         SDL_RenderClear(renderer);
         drawJoueur(renderer, &joueur);  // Dessin du joueur
         SDL_RenderPresent(renderer);
