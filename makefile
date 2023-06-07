@@ -4,7 +4,7 @@ CFLAGS = -Wall -W -std=c99 -g
 LIBS =
 LDFLAGS = `sdl2-config --cflags --libs`
 EXEC = main
-SRC = main.c
+SRC = main.c joueur/Joueur.c graphismes/Graphismes.c
 OBJ = $(SRC:.c=.o)
 
 all: $(EXEC)
