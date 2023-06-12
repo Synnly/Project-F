@@ -4,6 +4,7 @@
 #include "graphismes/Graphismes.h"
 #include "monde/Monde.h"
 #include "systemes/EventHandler.h"
+#include "systemes/Fps.h"
 
 int main(){
     SDL_Window* fenetre;
@@ -34,12 +35,25 @@ int main(){
     setMondeJoueur(&monde, &joueur);
     startRunning(&monde);
 
+    Uint32 framecount = 0;     // Initialisation des compteurs de FPS
+    int framerate = 1;
+    Uint32 startTick = SDL_GetTicks();
+    Uint32 previousSecond = startTick;
+    Uint32 currentTick;
+
     // Boucle de jeu
     while(isRunning(&monde)){
+        currentTick = SDL_GetTicks();   // Mise à jour du compteur du tick actuel
+        if (fpsCap(startTick, &currentTick, 60)) continue; // Si le nombre de FPS doit être limité, on passe à la frame suivante
+
         handleEvents(&monde, &event);
         SDL_RenderClear(renderer);
         drawJoueur(renderer, getMondeJoueur(&monde));  // Dessin du joueur
         SDL_RenderPresent(renderer);
+
+        framecount++;                   // Mise à jour du compteur de frames
+        startTick = currentTick;        // Mise à jour du compteur du tick de départ
+        fpsUpdate(&framecount, &framerate, &previousSecond); // Mise à jour du compteur de FPS
     }
 
     // Nettoyage du code
