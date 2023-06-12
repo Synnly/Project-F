@@ -5,7 +5,7 @@
 
 #define JOUEUR_WIDTH 32
 #define JOUEUR_HEIGHT 32
-#define JOUEUR_SPEED 0.05
+#define JOUEUR_SPEED 200
 
 struct Joueur {
     float x, y;             // Position du joueur

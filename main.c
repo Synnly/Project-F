@@ -40,13 +40,16 @@ int main(){
     Uint32 startTick = SDL_GetTicks();
     Uint32 previousSecond = startTick;
     Uint32 currentTick;
+    double dt;
 
     // Boucle de jeu
     while(isRunning(&monde)){
         currentTick = SDL_GetTicks();   // Mise à jour du compteur du tick actuel
         if (fpsCap(startTick, &currentTick, 60)) continue; // Si le nombre de FPS doit être limité, on passe à la frame suivante
 
-        handleEvents(&monde, &event);
+        dt = (currentTick - startTick) / 1000.;         // Calcul du delta t
+
+        handleEvents(&monde, &event, dt);   // Gestion des évènements
         SDL_RenderClear(renderer);
         drawJoueur(renderer, getMondeJoueur(&monde));  // Dessin du joueur
         SDL_RenderPresent(renderer);
