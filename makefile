@@ -4,7 +4,7 @@ CFLAGS = -Wall -W -std=c99 -g
 LIBS =
 LDFLAGS = `sdl2-config --cflags --libs`
 EXEC = main
-SRC = main.c joueur/Joueur.c graphismes/Graphismes.c monde/Monde.c
+SRC = main.c joueur/Joueur.c graphismes/Graphismes.c monde/Monde.c systemes/EventHandler.c systemes/Math.c
 OBJ = $(SRC:.c=.o)
 
 all: compile clean
@@ -19,4 +19,4 @@ main: $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	@rm -rf */*.o $(EXEC)
+	@rm -rf */*.o *.o $(EXEC)

@@ -27,8 +27,6 @@ void stopRunning(Monde* monde){
 /* ===== Fonctions ===== */
 
 void initMonde(Monde* monde){
-    Joueur joueur;
-    initJoueur(&joueur);
-    setMondeJoueur(monde, &joueur);
-    stopRunning(monde);
+    setMondeJoueur(monde, NULL);
+    monde->running = false;
 }

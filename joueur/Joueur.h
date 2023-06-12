@@ -3,9 +3,9 @@
 
 #include <SDL2/SDL.h>
 
-#define JOUEUR_WIDTH 50
-#define JOUEUR_HEIGHT 50
-#define JOUEUR_SPEED 5
+#define JOUEUR_WIDTH 32
+#define JOUEUR_HEIGHT 32
+#define JOUEUR_SPEED 0.05
 
 struct Joueur {
     float x, y;             // Position du joueur
