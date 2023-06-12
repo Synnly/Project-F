@@ -40,7 +40,7 @@ int main(){
     Uint32 startTick = SDL_GetTicks();
     Uint32 previousSecond = startTick;
     Uint32 currentTick;
-    double dt;
+    float dt;
 
     // Boucle de jeu
     while(isRunning(&monde)){
