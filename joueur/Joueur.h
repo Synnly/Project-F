@@ -2,16 +2,15 @@
 #define PROJECT_F_JOUEUR_H
 
 #include <SDL2/SDL.h>
+#include "../sprite/Sprite.h"
 
 #define JOUEUR_WIDTH 32
 #define JOUEUR_HEIGHT 32
 #define JOUEUR_SPEED 200
 
 struct Joueur {
-    float x, y;             // Position du joueur
-    int width, height;      // Dimensions du joueur
+    Sprite sprite;
     float speed;            // Vitesse du joueur
-    SDL_Texture* texture;   // Texture du joueur
 };
 
 typedef struct Joueur Joueur;

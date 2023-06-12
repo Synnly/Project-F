@@ -3,19 +3,19 @@
 /* ===== Getters ===== */
 
 float getJoueurX(Joueur* joueur){
-    return joueur->x;
+    return getSpriteX(&(joueur->sprite));
 }
 
 float getJoueurY(Joueur* joueur){
-    return joueur->y;
+    return getSpriteY(&(joueur->sprite));
 }
 
 int getJoueurWidth(Joueur* joueur){
-    return joueur->width;
+    return getSpriteWidth(&(joueur->sprite));
 }
 
 int getJoueurHeight(Joueur* joueur){
-    return joueur->height;
+    return getSpriteHeight(&(joueur->sprite));
 }
 
 float getJoueurSpeed(Joueur* joueur){
@@ -23,25 +23,25 @@ float getJoueurSpeed(Joueur* joueur){
 }
 
 SDL_Texture* getJoueurTexture(Joueur *joueur){
-    return joueur->texture;
+    return getSpriteTexture(&(joueur->sprite));
 }
 
 /* ===== Setters ===== */
 
 void setJoueurX(Joueur* joueur, float x){
-    joueur->x = x;
+    setSpriteX(&(joueur->sprite), x);
 }
 
 void setJoueurY(Joueur* joueur, float y){
-    joueur->y = y;
+    setSpriteY(&(joueur->sprite), y);
 }
 
 void setJoueurWidth(Joueur* joueur, int width){
-    joueur->width = width;
+    setSpriteWidth(&(joueur->sprite), width);
 }
 
 void setJoueurHeight(Joueur* joueur, int height){
-    joueur->height = height;
+    setSpriteHeight(&(joueur->sprite), height);
 }
 
 void setJoueurSpeed(Joueur* joueur, float speed){
@@ -49,17 +49,13 @@ void setJoueurSpeed(Joueur* joueur, float speed){
 }
 
 void setJoueurTexture(Joueur* joueur, SDL_Texture* texture){
-    joueur->texture = texture;
+    setSpriteTexture(&(joueur->sprite), texture);
 }
 
 /* ===== Fonctions ===== */
 
 void initJoueur(Joueur* joueur){
-    setJoueurX(joueur, 0);
-    setJoueurY(joueur, 0);
-    setJoueurWidth(joueur, JOUEUR_WIDTH);
-    setJoueurHeight(joueur, JOUEUR_HEIGHT);
+    initSprite(&(joueur->sprite), 0, 0, JOUEUR_WIDTH, JOUEUR_HEIGHT, NULL);
     setJoueurSpeed(joueur, JOUEUR_SPEED);
-    setJoueurTexture(joueur, NULL);
 }
 
