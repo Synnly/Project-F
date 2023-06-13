@@ -1,0 +1,13 @@
+#ifndef PROJECT_F_CONSTANTES_H
+#define PROJECT_F_CONSTANTES_H
+
+// Fenetre
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
+
+// Joueur
+#define JOUEUR_WIDTH 32
+#define JOUEUR_HEIGHT 32
+#define JOUEUR_SPEED 200
+
+#endif //PROJECT_F_CONSTANTES_H

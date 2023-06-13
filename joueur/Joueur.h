@@ -3,10 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "../sprite/Sprite.h"
-
-#define JOUEUR_WIDTH 32
-#define JOUEUR_HEIGHT 32
-#define JOUEUR_SPEED 200
+#include "../systemes/constantes.h"
 
 struct Joueur {
     Sprite sprite;

@@ -1,5 +1,6 @@
 #include "EventHandler.h"
 #include "Math.h"
+#include "constantes.h"
 
 void handleEvents(Monde* monde, SDL_Event* events, float dt){
 
@@ -19,46 +20,46 @@ void handleEvents(Monde* monde, SDL_Event* events, float dt){
 
         // Déplacement en haut-gauche
         if ((keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A]) && (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) - hypotenuse(distance));
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) - hypotenuse(distance));
+            setJoueurX(getMondeJoueur(monde), SDL_max(getJoueurX(getMondeJoueur(monde)) - hypotenuse(distance), 0));
+            setJoueurY(getMondeJoueur(monde), SDL_max(getJoueurY(getMondeJoueur(monde)) - hypotenuse(distance), 0));
         }
 
         // Déplacement en bas-gauche
         else if ((keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A]) && (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) - hypotenuse(distance));
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) + hypotenuse(distance));
+            setJoueurX(getMondeJoueur(monde), SDL_max(getJoueurX(getMondeJoueur(monde)) - hypotenuse(distance), 0));
+            setJoueurY(getMondeJoueur(monde), SDL_min(getJoueurY(getMondeJoueur(monde)) + hypotenuse(distance), WINDOW_HEIGHT-JOUEUR_HEIGHT));
         }
 
         // Déplacement en haut-droite
         else if ((keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D]) && (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W])) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) + hypotenuse(distance));
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) - hypotenuse(distance));
+            setJoueurX(getMondeJoueur(monde), SDL_min(getJoueurX(getMondeJoueur(monde)) + hypotenuse(distance), WINDOW_WIDTH-JOUEUR_WIDTH));
+            setJoueurY(getMondeJoueur(monde), SDL_max(getJoueurY(getMondeJoueur(monde)) - hypotenuse(distance), 0));
         }
 
         // Déplacement en bas-droite
         else if ((keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D]) && (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) + hypotenuse(distance));
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) + hypotenuse(distance));
+            setJoueurX(getMondeJoueur(monde), SDL_min(getJoueurX(getMondeJoueur(monde)) + hypotenuse(distance), WINDOW_WIDTH-JOUEUR_WIDTH));
+            setJoueurY(getMondeJoueur(monde), SDL_min(getJoueurY(getMondeJoueur(monde)) + hypotenuse(distance), WINDOW_HEIGHT-JOUEUR_HEIGHT));
         }
 
         // Déplacement à gauche
         else if (keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A]) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) - distance);
+            setJoueurX(getMondeJoueur(monde), SDL_max(getJoueurX(getMondeJoueur(monde)) - distance, 0));
         }
 
         // Déplacement à droite
         else if (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D]) {
-            setJoueurX(getMondeJoueur(monde), getJoueurX(getMondeJoueur(monde)) + distance);
+            setJoueurX(getMondeJoueur(monde), SDL_min(getJoueurX(getMondeJoueur(monde)) + distance, WINDOW_WIDTH-JOUEUR_WIDTH));
         }
 
         // Déplacement en haut
         else if (keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W]) {
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) - distance);
+            setJoueurY(getMondeJoueur(monde), SDL_max(getJoueurY(getMondeJoueur(monde)) - distance, 0));
         }
 
         // Déplacement en bas
         else if (keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S]) {
-            setJoueurY(getMondeJoueur(monde), getJoueurY(getMondeJoueur(monde)) + distance);
+            setJoueurY(getMondeJoueur(monde), SDL_min(getJoueurY(getMondeJoueur(monde)) + distance, WINDOW_HEIGHT-JOUEUR_HEIGHT));
         }
     }
 

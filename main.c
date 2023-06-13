@@ -5,6 +5,7 @@
 #include "monde/Monde.h"
 #include "systemes/EventHandler.h"
 #include "systemes/Fps.h"
+#include "systemes/constantes.h"
 
 int main(){
     SDL_Window* fenetre;
@@ -18,7 +19,7 @@ int main(){
     }
 
     // Création de la fenêtre et du renderer
-    if (SDL_CreateWindowAndRenderer(1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_INPUT_FOCUS, &fenetre, &renderer)){
+    if (SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_INPUT_FOCUS, &fenetre, &renderer)){
         printf(" Error : %s", SDL_GetError());
         exit(EXIT_FAILURE);
     }
