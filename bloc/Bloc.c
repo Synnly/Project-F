@@ -48,8 +48,12 @@ void setBlocTexture(Bloc* bloc, SDL_Texture* texture){
     setSpriteTexture(&bloc->sprite, texture);
 }
 
-void setBlocEstObstacle(Bloc* bloc, SDL_bool estObstacle){
-    bloc->estObstacle = estObstacle;
+void setBlocObstacle(Bloc* bloc){
+    bloc->estObstacle = SDL_TRUE;
+}
+
+void setBlocNonObstacle(Bloc* bloc){
+    bloc->estObstacle = SDL_FALSE;
 }
 
 /* ===== Fonctions ===== */
@@ -57,12 +61,4 @@ void setBlocEstObstacle(Bloc* bloc, SDL_bool estObstacle){
 void initBloc(Bloc *bloc, float x, float y, int width, int height, SDL_Texture *texture){
     initSprite(&bloc->sprite, x, y, width, height, texture);
     bloc->estObstacle = SDL_FALSE;
-}
-
-Bloc* initListeBlocs(int nbBlocs){
-    Bloc* listeBlocs = malloc(nbBlocs * sizeof(Bloc));
-    for (int i = 0; i < nbBlocs; i++) {
-        initBloc(&listeBlocs[i], 0, 0, 0, 0, NULL);
-    }
-    return listeBlocs;
 }

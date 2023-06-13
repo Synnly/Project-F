@@ -32,7 +32,9 @@ int main(){
     initJoueurSprite(renderer, &joueur);
 
     ListeBloc blocs;        // Initialisation des blocs
-    initListeBloc(&blocs);
+    initListeBloc(&blocs, (WINDOW_WIDTH / BLOC_WIDTH) * (WINDOW_HEIGHT / BLOC_HEIGHT));
+    initListeBlocsSprite(renderer, &blocs);
+    creerMurs(&blocs);
 
     Monde monde;            // Initialisation du monde
     initMonde(&monde);
@@ -56,7 +58,8 @@ int main(){
 
         handleEvents(&monde, &event, dt);   // Gestion des évènements
         SDL_RenderClear(renderer);
-        drawJoueur(renderer, getMondeJoueur(&monde));  // Dessin du joueur
+        drawListeBlocs(renderer, getListeBlocs(&monde));    // Dessin des blocs
+        drawJoueur(renderer, getMondeJoueur(&monde));         // Dessin du joueur
         SDL_RenderPresent(renderer);
 
         framecount++;                   // Mise à jour du compteur de frames

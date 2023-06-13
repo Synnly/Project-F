@@ -12,14 +12,23 @@ SDL_Texture* loadSprite(SDL_Renderer* renderer, const char* file){
     return textureSprite;
 }
 
+/* ===== Initialisation ===== */
+
 void initJoueurSprite(SDL_Renderer* renderer, Joueur* Joueur){
     setJoueurTexture(Joueur, loadSprite(renderer, "joueur/joueur.bmp"));
 }
 
-/* ==================================================================================================================================  */
-/* ============================================================  Dessins ============================================================  */
-/* ==================================================================================================================================  */
+void initBlocSprite(SDL_Renderer* renderer, Bloc* bloc){
+    setBlocTexture(bloc, loadSprite(renderer, "bloc/bloc.bmp"));
+}
 
+void initListeBlocsSprite(SDL_Renderer* renderer, ListeBloc* listeBlocs){
+    for(int i = 0; i < getNbBlocs(listeBlocs); i++){
+        initBlocSprite(renderer, getBloc(listeBlocs, i));
+    }
+}
+
+/* ===== Dessin ===== */
 
 void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteIndex, SDL_Texture* textureSprite){
 
@@ -34,6 +43,16 @@ void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteIn
 
 void drawJoueur(SDL_Renderer* renderer, Joueur* Joueur){
     drawSprite(renderer, (int) getJoueurX(Joueur), (int) getJoueurY(Joueur), getJoueurWidth(Joueur), getJoueurHeight(Joueur), 0,getJoueurTexture(Joueur));
+}
+
+void drawBloc(SDL_Renderer* renderer, Bloc* bloc){
+    drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),blocEstObstacle(bloc), getBlocTexture(bloc));
+}
+
+void drawListeBlocs(SDL_Renderer* renderer, ListeBloc* listeBlocs){
+    for(int i = 0; i < getNbBlocs(listeBlocs); i++){
+        drawBloc(renderer, getBloc(listeBlocs, i));
+    }
 }
 
 void endSDL(SDL_Window* fenetre, SDL_Renderer* renderer){

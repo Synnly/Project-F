@@ -10,4 +10,8 @@
 #define JOUEUR_HEIGHT 32
 #define JOUEUR_SPEED 200
 
+// Bloc
+#define BLOC_WIDTH 32
+#define BLOC_HEIGHT 32
+
 #endif //PROJECT_F_CONSTANTES_H

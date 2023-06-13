@@ -4,7 +4,7 @@
 #include "../bloc/Bloc.h"
 
 struct ListeBloc {
-    Bloc* bloc;
+    Bloc* blocs;
     int nbBlocs;
 };
 
@@ -42,8 +42,9 @@ void setBloc(ListeBloc* liste, int indice, Bloc* bloc);
 /**
  * Initialise la liste de blocs
  * @param liste La liste
+ * @param nbBlocs Le nombre de blocs
  */
-void initListeBloc(ListeBloc* liste);
+void initListeBloc(ListeBloc* liste, int nbBlocs);
 
 /**
  * Ajoute un bloc à la liste
@@ -64,5 +65,11 @@ void supprimerBloc(ListeBloc* liste, int indice);
  * @param liste La liste
  */
 void viderListeBloc(ListeBloc* liste);
+
+/**
+ * Passe tous les blocs de la liste au bord de l'écran en obstacle
+ * @param liste La liste
+ */
+void creerMurs(ListeBloc* liste);
 
 #endif //PROJECT_F_LISTEBLOC_H
