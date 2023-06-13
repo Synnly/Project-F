@@ -14,4 +14,7 @@
 #define BLOC_WIDTH 32
 #define BLOC_HEIGHT 32
 
+// Math
+#define EPSILON 1e-2
+
 #endif //PROJECT_F_CONSTANTES_H

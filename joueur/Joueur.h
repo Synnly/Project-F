@@ -6,7 +6,7 @@
 #include "../systemes/constantes.h"
 
 struct Joueur {
-    Sprite sprite;
+    Sprite* sprite;
     float speed;            // Vitesse du joueur
 };
 
@@ -54,6 +54,13 @@ float getJoueurSpeed(Joueur* joueur);
  * @return La texture du joueur
  */
 SDL_Texture* getJoueurTexture(Joueur *joueur);
+
+/**
+ * Renvoie le sprite du joueur
+ * @param joueur Le joueur
+ * @return Le sprite du joueur
+ */
+Sprite* getJoueurSprite(Joueur *joueur);
 
 /* ===== Setters ===== */
 

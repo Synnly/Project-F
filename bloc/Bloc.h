@@ -3,7 +3,7 @@
 #include "../sprite/Sprite.h"
 
 struct Bloc {
-    Sprite sprite;
+    Sprite* sprite;
     SDL_bool estObstacle;
 };
 
@@ -52,6 +52,13 @@ SDL_Texture* getBlocTexture(Bloc *bloc);
  * @return Si le bloc est un obstacle
  */
 SDL_bool blocEstObstacle(Bloc *bloc);
+
+/**
+ * Renvoie le sprite du bloc
+ * @param bloc Le bloc
+ * @return Le sprite du bloc
+ */
+Sprite* getBlocSprite(Bloc* bloc);
 
 /* ===== Setters ===== */
 
