@@ -31,9 +31,13 @@ int main(){
     initJoueur(&joueur);
     initJoueurSprite(renderer, &joueur);
 
+    ListeBloc blocs;        // Initialisation des blocs
+    initListeBloc(&blocs);
+
     Monde monde;            // Initialisation du monde
     initMonde(&monde);
     setMondeJoueur(&monde, &joueur);
+    setListeBlocs(&monde, &blocs);
     startRunning(&monde);
 
     Uint32 framecount = 0;     // Initialisation des compteurs de FPS

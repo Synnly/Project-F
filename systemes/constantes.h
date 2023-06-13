@@ -3,7 +3,7 @@
 
 // Fenetre
 #define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+#define WINDOW_HEIGHT 736
 
 // Joueur
 #define JOUEUR_WIDTH 32

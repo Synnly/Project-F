@@ -2,11 +2,12 @@
 #define PROJECT_F_MONDE_H
 
 #include "../joueur/Joueur.h"
-#include <stdbool.h>
+#include "../bloc/ListeBloc.h"
 
 struct Monde{
     Joueur* joueur;
-    bool running;
+    SDL_bool running;
+    ListeBloc* blocs;
 };
 
 typedef struct Monde Monde;
@@ -25,7 +26,14 @@ Joueur* getMondeJoueur(Monde* monde);
  * @param monde Le monde
  * @return Si le monde est en cours d'exécution
  */
-bool isRunning(Monde* monde);
+SDL_bool isRunning(Monde* monde);
+
+/**
+ * Renvoie la liste des blocs du monde
+ * @param monde Le monde
+ * @return La liste des blocs du monde
+ */
+ListeBloc* getListeBlocs(Monde* monde);
 
 /* ===== Setters ===== */
 
@@ -47,6 +55,13 @@ void startRunning(Monde* monde);
  * @param monde Le monde
  */
 void stopRunning(Monde* monde);
+
+/**
+ * Modifie la liste des blocs du monde
+ * @param monde Le monde
+ * @param liste La nouvelle liste des blocs
+ */
+void setListeBlocs(Monde* monde, ListeBloc* liste);
 
 /* ===== Fonctions ===== */
 
