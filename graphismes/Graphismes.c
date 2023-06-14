@@ -30,10 +30,10 @@ void initListeBlocsSprite(SDL_Renderer* renderer, ListeBloc* listeBlocs){
 
 /* ===== Dessin ===== */
 
-void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteIndex, SDL_Texture* textureSprite){
+void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteColumn, int spriteLine, SDL_Texture* textureSprite){
 
     // Rectangle source
-    SDL_Rect src = {w*spriteIndex,0,w,h};
+    SDL_Rect src = {w*spriteColumn,h*spriteLine,w,h};
 
     // Rectangle destination
     SDL_Rect dest = {x, y, w, h};
@@ -42,11 +42,19 @@ void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteIn
 }
 
 void drawJoueur(SDL_Renderer* renderer, Joueur* Joueur){
-    drawSprite(renderer, (int) getJoueurX(Joueur), (int) getJoueurY(Joueur), getJoueurWidth(Joueur), getJoueurHeight(Joueur), 0,getJoueurTexture(Joueur));
+    drawSprite(renderer, (int) getJoueurX(Joueur), (int) getJoueurY(Joueur), getJoueurWidth(Joueur), getJoueurHeight(Joueur), 0, 0, getJoueurTexture(Joueur));
 }
 
 void drawBloc(SDL_Renderer* renderer, Bloc* bloc){
-    drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),blocEstObstacle(bloc), getBlocTexture(bloc));
+    if (getBlocFace(bloc) == 0){
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),blocEstObstacle(bloc), 0, getBlocTexture(bloc));
+    }
+    else if (getBlocFace(bloc) >= 13){
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),getBlocFace(bloc)-11, 0, getBlocTexture(bloc));
+    }
+    else{
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),(getBlocFace(bloc)-1)%4, ((getBlocFace(bloc)-1)/4)+1, getBlocTexture(bloc));
+    }
 }
 
 void drawListeBlocs(SDL_Renderer* renderer, ListeBloc* listeBlocs){

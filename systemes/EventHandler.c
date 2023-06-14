@@ -2,12 +2,6 @@
 #include "Math.h"
 #include "constantes.h"
 
-#define GAUCHE 0
-#define DROITE 1
-#define HAUT 2
-#define BAS 3
-
-
 void handleEvents(Monde* monde, SDL_Event* events, float dt){
 
     // On retire tous les évènements sauf l'indication de fermer le jeu

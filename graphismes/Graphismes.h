@@ -45,10 +45,11 @@ void initListeBlocsSprite(SDL_Renderer* renderer, ListeBloc* listeBlocs);
  * @param y La coordonnée X du sprite
  * @param w La largeur du sprite
  * @param h La hauteur du sprite
- * @param spriteIndex L'indice du sprite à récupérer dans le sprite-sheet (si la texture ne contient qu'il seul sprite, mettre 0)
+ * @param spriteColumn La colonne du sprite
+ * @param spriteLine La ligne du sprite
  * @param textureSprite La texture du sprite
  */
-void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteIndex, SDL_Texture* textureSprite);
+void drawSprite(SDL_Renderer* renderer, int x, int y, int w, int h, int spriteColumn, int spriteLine, SDL_Texture* textureSprite);
 
 /**
  * Dessine le joueur sur l'écran

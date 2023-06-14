@@ -5,6 +5,10 @@
 struct Bloc {
     Sprite* sprite;
     SDL_bool estObstacle;
+    int face;               // Quatre blocs adjacents ==> 0
+                            // Trois blocs adjacents ==> 1: haut, 2: droite, 3: bas, 4: gauche
+                            // Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite
+                            // Un bloc adjacent ==> 9: haut, 10: droite, 11: bas, 12: gauche
 };
 
 typedef struct Bloc Bloc;
@@ -60,6 +64,17 @@ SDL_bool blocEstObstacle(Bloc *bloc);
  */
 Sprite* getBlocSprite(Bloc* bloc);
 
+/**
+ * Renvoie la face du bloc. Valeurs possibles :\n
+ * \n Quatre blocs adjacents ou dans le coin des bordures ==> 0
+ * \n Trois blocs adjacents ou en bordure ==> 1: gauche, 2: droite, 3: haut, 4: bas
+ * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite
+ * \n Un bloc adjacent ==> 9: gauche, 10: droite, 11: haut, 12: bas
+ * @param bloc Le bloc
+ * @return La face du bloc
+ */
+int getBlocFace(Bloc* bloc);
+
 /* ===== Setters ===== */
 
 /**
@@ -110,6 +125,17 @@ void setBlocObstacle(Bloc *bloc);
  * @param estObstacle Si le bloc est un obstacle
  */
 void setBlocNonObstacle(Bloc *bloc);
+
+/**
+ * Modifie la face du bloc. Valeurs possibles :\n
+ * \n Quatre blocs adjacents ou dans le coin des bordures ==> 0
+ * \n Trois blocs adjacents ou en bordure ==> 1: gauche, 2: droite, 3: haut, 4: bas
+ * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite, 13: vertical, 14: horizontal
+ * \n Un bloc adjacent ==> 9: gauche, 10: droite, 11: haut, 12: bas
+ * @param bloc Le bloc
+ * @param face La nouvelle face du bloc
+ */
+void setBlocFace(Bloc* bloc, int face);
 
 /* ===== Fonctions ===== */
 

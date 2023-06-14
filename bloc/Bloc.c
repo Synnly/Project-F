@@ -30,6 +30,10 @@ Sprite* getBlocSprite(Bloc* bloc){
     return bloc->sprite;
 }
 
+int getBlocFace(Bloc* bloc){
+    return bloc->face;
+}
+
 /* ===== Setters ===== */
 
 void setBlocX(Bloc* bloc, float x){
@@ -60,10 +64,15 @@ void setBlocNonObstacle(Bloc* bloc){
     bloc->estObstacle = SDL_FALSE;
 }
 
+void setBlocFace(Bloc* bloc, int face){
+    bloc->face = face;
+}
+
 /* ===== Fonctions ===== */
 
 void initBloc(Bloc *bloc, float x, float y, int width, int height, SDL_Texture *texture){
     bloc->sprite = malloc(sizeof(Sprite));
     initSprite(bloc->sprite, x, y, width, height, texture);
     bloc->estObstacle = SDL_FALSE;
+    bloc->face = 0;
 }

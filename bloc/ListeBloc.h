@@ -72,4 +72,10 @@ void viderListeBloc(ListeBloc* liste);
  */
 void creerMurs(ListeBloc* liste);
 
+/**
+ * Met à jour les faces des blocs de la liste
+ * @param liste La liste
+ */
+void updateFacesBlocs(ListeBloc* liste);
+
 #endif //PROJECT_F_LISTEBLOC_H

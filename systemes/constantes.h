@@ -4,6 +4,7 @@
 // Fenetre
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 736
+#define FPS 60
 
 // Joueur
 #define JOUEUR_WIDTH 32

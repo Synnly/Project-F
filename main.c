@@ -52,7 +52,7 @@ int main(){
     // Boucle de jeu
     while(isRunning(&monde)){
         currentTick = SDL_GetTicks();   // Mise à jour du compteur du tick actuel
-        if (fpsCap(startTick, &currentTick, 60)) continue; // Si le nombre de FPS doit être limité, on passe à la frame suivante
+        if (fpsCap(startTick, &currentTick, FPS)) continue; // Si le nombre de FPS doit être limité, on passe à la frame suivante
 
         dt = (currentTick - startTick) / 1000.;         // Calcul du delta t
 
