@@ -49,11 +49,14 @@ void drawBloc(SDL_Renderer* renderer, Bloc* bloc){
     if (getBlocFace(bloc) == 0){
         drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),blocEstObstacle(bloc), 0, getBlocTexture(bloc));
     }
-    else if (getBlocFace(bloc) >= 13){
-        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),getBlocFace(bloc)-11, 0, getBlocTexture(bloc));
+    else if (getBlocFace(bloc) <= 8){
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),(getBlocFace(bloc)-1)%4, ((getBlocFace(bloc)-1)/4)+1, getBlocTexture(bloc));
+    }
+    else if(getBlocFace(bloc) <= 10){
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),getBlocFace(bloc)-7, 0, getBlocTexture(bloc));
     }
     else{
-        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc),(getBlocFace(bloc)-1)%4, ((getBlocFace(bloc)-1)/4)+1, getBlocTexture(bloc));
+        drawSprite(renderer, (int) getBlocX(bloc), (int) getBlocY(bloc), getBlocWidth(bloc), getBlocHeight(bloc), (getBlocFace(bloc)+1)%4, (getBlocFace(bloc)+1)/4, getBlocTexture(bloc));
     }
 }
 

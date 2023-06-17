@@ -35,6 +35,7 @@ int main(){
     initListeBloc(&blocs, (WINDOW_WIDTH / BLOC_WIDTH) * (WINDOW_HEIGHT / BLOC_HEIGHT));
     initListeBlocsSprite(renderer, &blocs);
     creerMurs(&blocs);
+    generateClusters(&blocs);
 
     Monde monde;            // Initialisation du monde
     initMonde(&monde);

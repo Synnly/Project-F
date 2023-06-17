@@ -78,4 +78,20 @@ void creerMurs(ListeBloc* liste);
  */
 void updateFacesBlocs(ListeBloc* liste);
 
+/**
+ * Génère les clusters de blocs de la liste. Un cluster est un un bloc obstacle qui propage son obstacle aux blocs autour de lui.
+ * @param liste La liste
+ */
+void generateClusters(ListeBloc* liste);
+
+/**
+ * Propage la propriété d'obstacle des clusters de la liste. Un cluster propage son obstacle aux 8 blocs autour de lui et ces blocs auront une probabilité
+ * de probaBloc - DECROISSANCE_CONTAGION de devenir un obstacle et de propager à leur tour leur obstacle aux 8 blocs autour d'eux.
+ * @param liste La liste des blocs
+ * @param probaBloc La liste des probabilités de cluster où probaBloc[i] est la probabilité que le cluster i propage son obstacle aux blocs autour de lui
+ */
+void propagateClusters(ListeBloc* liste, int* probaBloc);
+
+
+float probaProchainBloc(float probaBloc);
 #endif //PROJECT_F_LISTEBLOC_H

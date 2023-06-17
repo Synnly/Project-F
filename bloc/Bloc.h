@@ -9,6 +9,7 @@ struct Bloc {
                             // Trois blocs adjacents ==> 1: haut, 2: droite, 3: bas, 4: gauche
                             // Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite
                             // Un bloc adjacent ==> 9: haut, 10: droite, 11: bas, 12: gauche
+                            // Aucun bloc adjacent ==> 13
 };
 
 typedef struct Bloc Bloc;
@@ -68,8 +69,9 @@ Sprite* getBlocSprite(Bloc* bloc);
  * Renvoie la face du bloc. Valeurs possibles :\n
  * \n Quatre blocs adjacents ou dans le coin des bordures ==> 0
  * \n Trois blocs adjacents ou en bordure ==> 1: gauche, 2: droite, 3: haut, 4: bas
- * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite
- * \n Un bloc adjacent ==> 9: gauche, 10: droite, 11: haut, 12: bas
+ * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite, 9: vertical, 10: horizontal
+ * \n Un bloc adjacent ==> 11: gauche, 12: droite, 13: haut, 14: bas
+ * \n Aucun bloc adjacent ==> 15
  * @param bloc Le bloc
  * @return La face du bloc
  */
@@ -130,8 +132,9 @@ void setBlocNonObstacle(Bloc *bloc);
  * Modifie la face du bloc. Valeurs possibles :\n
  * \n Quatre blocs adjacents ou dans le coin des bordures ==> 0
  * \n Trois blocs adjacents ou en bordure ==> 1: gauche, 2: droite, 3: haut, 4: bas
- * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite, 13: vertical, 14: horizontal
- * \n Un bloc adjacent ==> 9: gauche, 10: droite, 11: haut, 12: bas
+ * \n Deux blocs adjacents ==> 5: haut gauche, 6: haut droite, 7: bas gauche, 8: bas droite, 9: vertical, 10: horizontal
+ * \n Un bloc adjacent ==> 11: gauche, 12: droite, 13: haut, 14: bas
+ * \n Aucun bloc adjacent ==> 15
  * @param bloc Le bloc
  * @param face La nouvelle face du bloc
  */
