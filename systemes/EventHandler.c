@@ -38,6 +38,7 @@ void handleEvents(Monde* monde, SDL_Event* events, float dt){
             distanceY += ((keystates[SDL_SCANCODE_LEFT] || keystates[SDL_SCANCODE_A]) == (keystates[SDL_SCANCODE_RIGHT] || keystates[SDL_SCANCODE_D])) ? distance : hypotenuse(distance);
         }
 
+        // Detection de collision avec les blocs
         setJoueurX(getMondeJoueur(monde), SDL_min(WINDOW_WIDTH-JOUEUR_WIDTH, SDL_max(0, getJoueurX(getMondeJoueur(monde)) + distanceX)));
         if (joueurEnCollisionBlocs(getMondeJoueur(monde), getListeBlocs(monde))) {
             setJoueurX(getMondeJoueur(monde), SDL_min(WINDOW_WIDTH-JOUEUR_WIDTH, SDL_max(0, getJoueurX(getMondeJoueur(monde)) - distanceX)));

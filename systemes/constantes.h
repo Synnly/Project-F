@@ -14,8 +14,10 @@
 // Bloc
 #define BLOC_WIDTH 32
 #define BLOC_HEIGHT 32
-#define NB_NOEUDS 4
+#define NB_CLUSTERS 18
+#define DIVISEUR_MARGE_CLUSTER 8
 #define DECROISSANCE_CONTAGION 20
+#define MIN_CONTAGION 40
 
 // Math
 #define EPSILON 1e-4

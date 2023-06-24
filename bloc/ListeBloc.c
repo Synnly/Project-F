@@ -137,10 +137,16 @@ void generateClusters(ListeBloc* liste){
     int* listeNoeuds = calloc(nbBlocs, sizeof(int)); // Liste des probabilités que le bloc i devienne un obstacle. >=100 = 100% de chance, <=0 = 0% de chance
     int indice;
     srand(time(NULL));
+    int nbLargeur = WINDOW_WIDTH/BLOC_WIDTH;
+    int nbHauteur = WINDOW_HEIGHT/BLOC_HEIGHT;
 
-    for(int i = 0; i<NB_NOEUDS; i++){
-        indice = rand()%nbBlocs;
-        listeNoeuds[indice] = 100; // NB_NOEUDS blocs deviennent un obstacle
+    for(int i = 0; i < NB_CLUSTERS; i++){
+        indice = 0;
+        while(indice%nbLargeur < nbLargeur / DIVISEUR_MARGE_CLUSTER || indice % nbLargeur > nbLargeur / DIVISEUR_MARGE_CLUSTER  * (DIVISEUR_MARGE_CLUSTER-1) ||
+                indice / nbLargeur < nbHauteur / DIVISEUR_MARGE_CLUSTER || indice / nbLargeur > nbHauteur / DIVISEUR_MARGE_CLUSTER * (DIVISEUR_MARGE_CLUSTER-1)){ // Clusters au milieu
+            indice = rand()%nbBlocs;
+        }
+        listeNoeuds[indice] = 100; // NB_CLUSTERS blocs deviennent un obstacle
     }
 
     propagateClusters(liste, listeNoeuds);
@@ -150,6 +156,7 @@ void propagateClusters(ListeBloc* liste, int* probaBloc){
     SDL_bool blocsModifies = SDL_TRUE; // Booléen qui indique si des blocs ont été modifiés. Initialisé à vrai pour entrer dans la boucle
     int nbLargeur = WINDOW_WIDTH/BLOC_WIDTH;
 
+    // Propagation des clusters
     while(blocsModifies){
         blocsModifies = SDL_FALSE;
         for(int i=0; i< getNbBlocs(liste); i++){
@@ -162,7 +169,7 @@ void propagateClusters(ListeBloc* liste, int* probaBloc){
                                          SDL_max(probaVoisins[4], SDL_max(probaVoisins[5], SDL_max(probaVoisins[6], probaVoisins[7])))))));
 
                 // On attribue au bloc la proba max des voisins - DECROISSANCE_CONTAGION
-                if(SDL_max(probaMaxVoisins - DECROISSANCE_CONTAGION, 0) > probaBloc[i]){
+                if(SDL_max(probaMaxVoisins - DECROISSANCE_CONTAGION, 0) > probaBloc[i] && SDL_max(probaMaxVoisins - DECROISSANCE_CONTAGION, 0) > MIN_CONTAGION ){
                     probaBloc[i] = SDL_max(probaMaxVoisins - DECROISSANCE_CONTAGION, 0);
                     blocsModifies = SDL_TRUE;
                 }
@@ -185,3 +192,8 @@ void propagateClusters(ListeBloc* liste, int* probaBloc){
     updateFacesBlocs(liste);
 }
 
+void resetListeBlocObstables(ListeBloc* liste){
+    for(int i=0; i<getNbBlocs(liste); i++){
+        setBlocNonObstacle(getBloc(liste, i));
+    }
+}
