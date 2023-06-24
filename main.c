@@ -23,6 +23,7 @@ int main(){
         printf(" Error : %s", SDL_GetError());
         exit(EXIT_FAILURE);
     }
+    SDL_SetWindowFullscreen(fenetre, SDL_WINDOW_FULLSCREEN);
 
     SDL_SetRenderDrawColor(renderer, 32, 34, 37, SDL_ALPHA_OPAQUE);
     SDL_Event event;
