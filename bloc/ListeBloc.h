@@ -98,5 +98,11 @@ void propagateClusters(ListeBloc* liste, int* probaBloc);
  */
 void resetListeBlocObstables(ListeBloc* liste);
 
+/**
+ * Remplit les trous dans les clusters de bloc obstacles. Un trou est un bloc qui n'est pas un obstacle mais qui est entouré de blocs obstacles en haut, bas, gauche et droite.
+ * @param liste La liste
+ */
+void remplirTrous(ListeBloc* liste);
+
 float probaProchainBloc(float probaBloc);
 #endif //PROJECT_F_LISTEBLOC_H

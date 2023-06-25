@@ -197,3 +197,15 @@ void resetListeBlocObstables(ListeBloc* liste){
         setBlocNonObstacle(getBloc(liste, i));
     }
 }
+
+void remplirTrous(ListeBloc* liste){
+    int nbLargeur = WINDOW_WIDTH/BLOC_WIDTH;
+    for(int i=0; i<(WINDOW_WIDTH/BLOC_WIDTH) * (WINDOW_HEIGHT/BLOC_HEIGHT); i++){
+        if (i>nbLargeur && i%nbLargeur > 0 && i%nbLargeur <nbLargeur-1 && i < (WINDOW_WIDTH/BLOC_WIDTH) * (WINDOW_HEIGHT/BLOC_HEIGHT) - nbLargeur){
+            if(!blocEstObstacle(getBloc(liste, i)) && blocEstObstacle(getBloc(liste, i-nbLargeur)) && blocEstObstacle(getBloc(liste, i+nbLargeur)) &&
+                blocEstObstacle(getBloc(liste, i-1)) && blocEstObstacle(getBloc(liste, i+1))){
+                setBlocObstacle(getBloc(liste, i));
+            }
+        }
+    }
+}
